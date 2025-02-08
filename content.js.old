@@ -1,0 +1,42 @@
+function isBlogPage() {
+    return document.querySelector("article") !== null ||
+           window.location.href.includes("blog") ||
+           document.querySelector("meta[property='og:type'][content='article']");
+  }
+  
+  function boldFirstHalf(text) {
+    return text.replace(/\b(\w{2,})\b/g, (match) => {
+      let half = Math.floor(match.length / 2);
+      return `<b>${match.slice(0, half)}</b>${match.slice(half)}`;
+    });
+  }
+  
+  function processTextNode(node) {
+    let span = document.createElement("span");
+    span.innerHTML = boldFirstHalf(node.nodeValue);
+    return span;
+  }
+  
+  function processElement(node) {
+    if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== "") {
+      node.replaceWith(processTextNode(node));
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.tagName !== "SCRIPT" && node.tagName !== "STYLE") {
+        node.childNodes.forEach(processElement);
+      }
+    }
+  }
+  
+  function applyBoldFormatting() {
+    let article = document.querySelector("article") || document.body;
+    processElement(article);
+  
+    // Increase font size and spacing for better readability
+    //document.body.style.zoom = "133%"; 
+  }
+  
+  // Ensure script runs only on blog pages and after full DOM load
+  if (isBlogPage()) {
+    window.addEventListener("load", applyBoldFormatting);
+  }
+  
