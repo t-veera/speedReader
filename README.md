@@ -1,6 +1,6 @@
 # 📖 Chrome Extension: Blog Read Mode with Bold Formatting
 
-![Extension Icon](icon.png)
+![Extension Icon](icons/icon48.png)
 
 ## 📝 Overview
 This Chrome extension enhances the readability of blog articles by:
@@ -18,7 +18,7 @@ This Chrome extension enhances the readability of blog articles by:
 ### Manual Installation (for Development or Personal Use)
 1. Download the repository as a ZIP or clone it:
    ```sh
-   git clone https://github.com/yourusername/blog-read-mode-extension.git
+   git clone https://github.com/t-veera/speedReader.git
    ```
 2. Open Chrome and navigate to `chrome://extensions/`.
 3. Enable **Developer mode** (top right corner).
